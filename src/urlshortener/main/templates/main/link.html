@@ -1,0 +1,120 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="result-container">
+  <h2>🎉 Your Shortened URL is Ready! 🎉</h2>
+  <p>Click the link below to access your shortened URL:</p>
+  
+  <div class="shortened-link">
+    <a href="{{ shortened_url }}" target="_blank">{{ shortened_url }}</a>
+  </div>
+  
+  <button class="copy-btn" onclick="copyToClipboard()">📋 Copy Link</button>
+</div>
+
+<style>
+  /* Background Animation */
+  body {
+    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #667eea, #764ba2);
+    background-size: 400% 400%;
+    animation: gradientBG 8s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Glassmorphism Card */
+  .result-container {
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: white;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+
+  /* Shortened Link Display */
+  .shortened-link {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    word-wrap: break-word;
+  }
+
+  .shortened-link a {
+    color: #ffeb3b;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .shortened-link a:hover {
+    text-decoration: underline;
+    color: #ffdf00;
+  }
+
+  /* Copy Button */
+  .copy-btn {
+    margin-top: 20px;
+    width: 100%;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    padding: 14px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(255, 117, 140, 0.4);
+    transition: 0.3s;
+  }
+
+  .copy-btn:hover {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(255, 117, 140, 0.6);
+  }
+</style>
+
+<script>
+  function copyToClipboard() {
+    const tempInput = document.createElement("input");
+    tempInput.value = "{{ shortened_url }}";
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert("✅ Shortened URL copied to clipboard!");
+  }
+</script>
+
+{% endblock %}

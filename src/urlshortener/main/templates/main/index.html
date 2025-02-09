@@ -1,0 +1,113 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="form-container">
+  <h2>✨ Shorten Your URL ✨</h2>
+  <p>Transform your long links into sleek, shareable URLs!</p>
+  
+  <form action="{% url 'shorten_post' %}" method="post">
+    {% csrf_token %}
+    
+    <div class="input-group">
+      <label class="mdc-text-field">
+        <input type="text" name="url" class="mdc-text-field__input" placeholder="🔗 Paste your URL here..." required>
+      </label>
+    </div>
+
+    <button class="shorten-btn" type="submit">
+      🔥 Shorten URL 🔥
+    </button>
+  </form>
+</div>
+
+<style>
+  /* Animated Background */
+  body {
+    background: linear-gradient(-45deg, #ff7eb3, #ff758c, #667eea, #764ba2);
+    background-size: 400% 400%;
+    animation: gradientBG 8s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Glassmorphism Card */
+  .form-container {
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: white;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+
+  /* Input Field */
+  .mdc-text-field {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    outline: none;
+    color: white;
+    transition: 0.3s;
+  }
+
+  .mdc-text-field::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .mdc-text-field:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Fancy Button */
+  .shorten-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    padding: 14px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(255, 117, 140, 0.4);
+    transition: 0.3s;
+  }
+
+  .shorten-btn:hover {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(255, 117, 140, 0.6);
+  }
+</style>
+{% endblock %}
